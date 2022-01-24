@@ -15,7 +15,7 @@ class SpringWithMySqlAndJpaCrudApplicationTests {
 	Logger log = LoggerFactory.getLogger(SpringWithMySqlAndJpaCrudApplication.class);
 
 	@Test
-	void contextLoads() {
+	 contextLoads() {
 		log.info("Application loaded....");
 		log.info("Virendra Test loaded....");
 		assertEquals(true, true);
