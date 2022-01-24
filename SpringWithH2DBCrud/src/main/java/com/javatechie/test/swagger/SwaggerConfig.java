@@ -1,0 +1,49 @@
+package com.javatechie.test.swagger;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger.web.DocExpansion;
+import springfox.documentation.swagger.web.UiConfiguration;
+import springfox.documentation.swagger.web.UiConfigurationBuilder;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).select()
+				.apis(RequestHandlerSelectors.basePackage("com.javatechie.test.controller"))
+				.paths(PathSelectors.regex("/.*")).build().apiInfo(apiInfo()).produces(DEFAULT_PRODUCES_AND_CONSUMES)
+				.consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder().title("Test Service")
+				.description("Sample Documentation Generateed Using SWAGGER2 for our Book Rest API")
+				.termsOfServiceUrl("https://www.youtube.com/channel/UCORuRdpN2QTCKnsuEaeK-kQ")
+				.license("Java_Gyan_Mantra License")
+				.licenseUrl("https://www.youtube.com/channel/UCORuRdpN2QTCKnsuEaeK-kQ").version("1.0").build();
+	}
+
+	@Bean
+	public UiConfiguration uiConfig() {
+		return UiConfigurationBuilder.builder().displayRequestDuration(true).docExpansion(DocExpansion.LIST).build();
+	}
+
+	private static final Set<String> DEFAULT_PRODUCES_AND_CONSUMES = new HashSet<String>(
+			Arrays.asList("application/json"));
+
+}
