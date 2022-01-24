@@ -17,6 +17,7 @@ class SpringWithMySqlAndJpaCrudApplicationTests {
 	@Test
 	void contextLoads() {
 		log.info("Application loaded....");
+		log.info("Virendra Test loaded....");
 		assertEquals(true, true);
 	}
 
